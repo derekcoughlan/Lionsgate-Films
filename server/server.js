@@ -1,16 +1,27 @@
 const express = require('express');
 const app = express();
 const path = require('path')
+const db = require('./model');
+require('dotenv').config();
+
+const userController = require('./controllers/userController')
 
 app.use(express.json());
 
-app.get('/api', (req, res) => {
-    res.status(200).send('enter json data here')
+app.get('/home', userController.getAllFilms, (req, res) => {
+   res.status(200).json(res.locals.allFilms);
 })
+
+app.get('/home/savedFilms', userController.getSavedFilms, (req, res) => {
+   res.status(200).json(res.locals.savedFilms);
+})
+
+//Page Not Found
 app.use('*', (req, res) => {
     res.status(404).send('Not Found');
 })
 
+//Global Error Handler
 app.use((err, req, res, next) => {
     const defaultErr = {
         log: 'unknown error handler caught in middleware',

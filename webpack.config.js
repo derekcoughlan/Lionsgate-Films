@@ -36,8 +36,11 @@ module.exports = {
             publicPath: '/build',
             directory: path.resolve(__dirname, 'build')
        },
+       proxy: {
+        '/home/**': {
+            target: 'http://localhost:3000/',
+            secure: false,
+        } //this may need to change based on how my code is set up.
+       }
     },
-    proxy: {
-        '/api': 'http://localhost:3000' //this may need to change based on how my code is set up.
-    }
 }

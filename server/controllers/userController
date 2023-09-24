@@ -1,0 +1,45 @@
+const db = require('../model');
+
+const userController = {};
+
+userController.getAllFilms = (req, res, next) => {
+    const text =  'SELECT * FROM films LIMIT 25;';
+    db.query(text, (err, result) => {
+        if (err){
+            return next({
+                log: 'userController.getAllFilms ERROR: failure to retrieve all films',
+                status: 404,
+                message: {
+                    err: 'userController.getAllFilms ERROR: failure to retrieve all films'
+                }
+            })
+        }
+        else{
+            res.locals.allFilms = result.rows;
+            return next()
+        }
+    }
+  )
+}
+
+userController.getSavedFilms = (req, res, next) => {
+    const text =  'SELECT films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = 1;';
+    db.query(text, (err, result) => {
+        if (err){
+            return next({
+                log: 'userController.getSavedFilms ERROR: failure to retrieve saved films',
+                status: 404,
+                message: {
+                    err: 'userController.getSavedFilms ERROR: failure to retrieve saved films'
+                }
+            })
+        }
+        else{
+            res.locals.savedFilms = result.rows;
+            return next()
+        }
+    }
+  )
+}
+
+module.exports = userController;
