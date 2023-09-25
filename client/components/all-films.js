@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-const AllFilms = () => {
+const AllFilms = (props) => {
+  const allFilms = props.films
 
-  const [films, getFilms] = useState([]);
-
-  useEffect(() => {
-    fetch('/home')
-      .then(res => res.json())
-      .then(data => {
-        getFilms(data)
-      })
-      .catch(err => {console.log('failed to retrieve all films')})
-  }, [])
-
-//   function handleClick(){
-//     fetch('', {
-
-//     })
-//   }
-
-  const filmList = films.map((movie, index) => {
-    return <tr key={index}>
+  const filmList = allFilms.map((movie) => {
+    return <tr key={movie.id}>
       <td>{movie.title}</td>
       <td>{movie.release}</td>
       <td>{movie.rating}</td>
       <td>{movie.director}</td>
       <td>{movie.genre}</td>
-      <td><button>Save</button></td>
+      <td><button onClick={() => {props.handleClick(movie.id)}}>Save</button></td>
     </tr>
   })
 

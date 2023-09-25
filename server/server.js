@@ -12,9 +12,19 @@ app.get('/home', userController.getAllFilms, (req, res) => {
    res.status(200).json(res.locals.allFilms);
 })
 
+app.post('/home/addSaved', userController.addSavedFilms, (req, res) => {
+    res.sendStatus(200)
+})
+
+app.delete('/home/removeSaved', userController.removeSavedFilms, (req, res) => {
+    res.sendStatus(200)
+})
+
 app.get('/home/savedFilms', userController.getSavedFilms, (req, res) => {
    res.status(200).json(res.locals.savedFilms);
 })
+
+
 
 //Page Not Found
 app.use('*', (req, res) => {

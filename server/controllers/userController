@@ -23,7 +23,7 @@ userController.getAllFilms = (req, res, next) => {
 }
 
 userController.getSavedFilms = (req, res, next) => {
-    const text =  'SELECT films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = 1;';
+    const text =  'SELECT films.id, films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = 1;';
     db.query(text, (err, result) => {
         if (err){
             return next({
@@ -40,6 +40,40 @@ userController.getSavedFilms = (req, res, next) => {
         }
     }
   )
+}
+
+userController.addSavedFilms = (req, res, next) => {
+    const text = 'INSERT INTO savedFilms (userid, movieid) VALUES ($1, $2);'
+    const values = [1, req.body.id];
+    db.query(text, values).then(data => {
+        console.log('film has been added')
+        return next();
+    }).catch(err => {
+        return next({
+            log: 'userController.addSavedFilms ERROR: failure to add saved film',
+            status: 400,
+            message: {
+                err: 'userController.addSavedFilms ERROR: failure to add saved film'
+            }
+        })
+    })
+}
+
+userController.removeSavedFilms = (req, res, next) => {
+    const text = 'DELETE FROM savedFilms WHERE userid = $1 AND movieid = $2;'
+    const values = [1, req.body.id];
+    db.query(text, values).then(data => {
+        console.log('film has been removed')
+        return next();
+    }).catch(err => {
+        return next({
+            log: 'userController.removeSavedFilms ERROR: failure to remove saved film',
+            status: 400,
+            message: {
+                err: 'userController.removeSavedFilms ERROR: failure to remove saved film'
+            }
+        })
+    })
 }
 
 module.exports = userController;

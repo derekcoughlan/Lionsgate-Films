@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const SavedFilms = () => {
-    
-    const [savedFilms, getSavedFilms] = useState([])
-
-    useEffect(() => {
-        fetch('/home/savedFilms')
-          .then(res => res.json())
-          .then(data => {
-            getSavedFilms(data)
-          })
-          .catch(err => {console.log('failed to retrieve saved films')})
-      }, [savedFilms])
+const SavedFilms = (props) => {
+    const savedFilms = props.savedFilms;
+    //console.log('savedFilms list: ', savedFilms)
 
     const savedFilmsList = savedFilms.map((movie, index) => {
         return <tr key={index}>
@@ -20,7 +11,7 @@ const SavedFilms = () => {
           <td>{movie.rating}</td>
           <td>{movie.director}</td>
           <td>{movie.genre}</td>
-          <td><button>Remove</button></td>
+          <td><button onClick={() => {props.handleClick(movie.id)}}>Remove</button></td>
         </tr>
     })
 
