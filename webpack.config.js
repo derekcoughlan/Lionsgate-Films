@@ -18,7 +18,7 @@ module.exports = {
             }
         },
         {
-            test: /\.scss$/,
+            test: /\.s?[ac]ss$/,
             use: [
              'style-loader', 'css-loader', 'sass-loader'
             ],
@@ -42,5 +42,8 @@ module.exports = {
             secure: false,
         } //this may need to change based on how my code is set up.
        }
+    },
+    resolve: {   
+        extensions: ['.js'], 
     },
 }

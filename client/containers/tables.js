@@ -6,24 +6,28 @@ const Tables = () => {
 
   const [films, getFilms] = useState([]);
   const [savedFilms, getSavedFilms] = useState([]);
-  const [update, setUpdate] = useState('false');
 
-  useEffect(() => {
+  function getAllFilms(){
     fetch('/home')
       .then(res => res.json())
       .then(data => {
         getFilms(data)
       })
       .catch(err => {console.log('failed to retrieve all films')})
-  }, [])
+  }
 
-  useEffect(() => {
+  function getAllSavedFilms(){
     fetch('/home/savedFilms')
       .then(res => res.json())
       .then(data => {
         getSavedFilms(data)
       })
       .catch(err => {console.log('failed to retrieve saved films')})
+  }
+
+  useEffect(() => {
+    getAllFilms();
+    getAllSavedFilms();
   }, [])
     
     function handleClick1(filmId){
@@ -32,12 +36,7 @@ const Tables = () => {
           body: JSON.stringify({id: filmId}),
           headers: { 'Content-Type': 'application/json'}
         }).then(() => {
-            fetch('/home/savedFilms')
-              .then(res => res.json())
-              .then(data => {
-                getSavedFilms(data)
-                })
-              .catch(err => {console.log('failed to render list after adding saved films')})
+            getAllSavedFilms();
                 })
           .catch(err => console.log('failed to add saved film'))
       }
@@ -48,20 +47,30 @@ const Tables = () => {
           body: JSON.stringify({id: filmId}),
           headers: { 'Content-Type': 'application/json'}
         }).then(() => {
-            fetch('/home/savedFilms')
-              .then(res => res.json())
-              .then(data => {
-                getSavedFilms(data)
-                })
-              .catch(err => {console.log('failed to render list after deletion of saved films')})
+            getAllSavedFilms();
                 })
           .catch(err => console.log('failed to add saved film'))
       }
 
+      function searchTable(newSearchValue){
+        if (newSearchValue !== ''){
+            const filteredFilms = [];
+            films.forEach(movie => {
+                if (movie.title.startsWith(newSearchValue.toUpperCase())){
+                    filteredFilms.push(movie);
+                }
+            })
+            getFilms(filteredFilms);
+        }
+        else{
+            getAllFilms();
+        }
+      }
+
     return (
         <div>
-            <AllFilms films={films} handleClick={handleClick1} update={update} />
-            <SavedFilms savedFilms={savedFilms} handleClick={handleClick2} update={update}/>
+            <AllFilms films={films} handleClick={handleClick1} searchTable={searchTable} />
+            <SavedFilms savedFilms={savedFilms} handleClick={handleClick2} />
         </div>
     )
 }

@@ -8,7 +8,7 @@ const userController = require('./controllers/userController')
 
 app.use(express.json());
 
-app.get('/home', userController.getAllFilms, (req, res) => {
+app.get('/home/', userController.getAllFilms, (req, res) => {
    res.status(200).json(res.locals.allFilms);
 })
 

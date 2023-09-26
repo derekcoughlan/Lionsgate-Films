@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SearchBar from './searchBar';
 
 const AllFilms = (props) => {
   const allFilms = props.films
@@ -17,6 +18,7 @@ const AllFilms = (props) => {
     return (
         <div>
             <h2>All Films</h2>
+            <SearchBar searchTable={props.searchTable}/>
             <table>
                 <thead>
                   <tr>
