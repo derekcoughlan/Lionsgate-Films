@@ -1,24 +1,29 @@
 import React from "react";
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
-//import 'bootstrap/dist/css/bootstrap.min.css'
+import logo from '/assets/lionsgate.png'
 
 function NavBar (){
     return(
-        <Navbar className="bg-body-tertiary">
+        <>
+        <Navbar  bg="dark" data-bs-theme="dark" className="bg-body-primary">
         <Container>
-          <Navbar.Brand href="#home">
-            <img
-              src="/assets/Lionsgate_Logo-white.webp"
-              width="30"
+          <Navbar.Brand><img
+              src={logo}
+              width="150"
               height="30"
               className="d-inline-block align-top"
-              alt="Lionsgate logo"
-            />
-          </Navbar.Brand>
-        </Container>
+              alt="React Bootstrap logo"
+            /></Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="">About</Nav.Link>
+            <Nav.Link href="">Contact</Nav.Link>
+          </Nav>
+          </Container>
       </Navbar>
-    )
+      </>
+    );
 }
 
 export default NavBar;

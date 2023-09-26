@@ -23,6 +23,13 @@ module.exports = {
              'style-loader', 'css-loader', 'sass-loader'
             ],
           },
+          {
+            test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+            loader: 'url-loader',
+            options: {
+              limit: 10000
+            }
+        }
         ]
     },
     plugins: [
@@ -44,6 +51,6 @@ module.exports = {
        }
     },
     resolve: {   
-        extensions: ['.js'], 
+        extensions: ['.js', '.jsx'], 
     },
 }
