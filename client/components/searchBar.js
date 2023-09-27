@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 
     return (
     <div>
-        <Form onSubmit={submitForm}>
+        <Form className='border rounded' onSubmit={submitForm}>
             <InputGroup>
               <Form.Control
                 type='text'

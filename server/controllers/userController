@@ -3,7 +3,7 @@ const db = require('../model');
 const userController = {};
 
 userController.getAllFilms = (req, res, next) => {
-    const text =  'SELECT * FROM films LIMIT 25;';
+    const text =  'SELECT * FROM films ORDER BY release DESC LIMIT 250;';
     db.query(text, (err, result) => {
         if (err){
             return next({

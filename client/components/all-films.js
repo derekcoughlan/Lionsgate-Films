@@ -25,17 +25,17 @@ const AllFilms = (props) => {
         <Container>
           <Row>
             <Col>
-              <h2 className='primary'>All Films</h2>
+              <h1>All Films</h1>
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col className='my-3'>
               <SearchBar searchTable={props.searchTable}/>
             </Col>
           </Row>
-          <Row>
-            <Col>
-            <Table striped border hover className="shadow-lg text-center" variant="light">
+          <Row >
+            <Col style={{height: '1000px', overflow: 'scroll'}}>
+            <Table striped border hover thead-dark className="text-center shadow ">
                 <thead>
                   <tr>
                       <th>Film</th>
