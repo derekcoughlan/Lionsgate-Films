@@ -13,7 +13,7 @@ const Featured = () => {
                     <img
                         className="d-block w-100"
                         src={JW}
-                        width='1250'
+                        width='1200'
                         height='600'
                         alt="First slide"
                     />
@@ -26,7 +26,7 @@ const Featured = () => {
                     <img
                         className="d-block w-100"
                         src={HG}
-                        width='1250'
+                        width='1200'
                         height='600'
                         alt="Second slide"
                     />
@@ -39,7 +39,7 @@ const Featured = () => {
                     <img
                         className="d-block w-100"
                         src={SAW}
-                        width='1250'
+                        width='1200'
                         height='600'
                         alt="Third slide"
                     />

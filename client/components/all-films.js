@@ -12,7 +12,7 @@ const AllFilms = (props) => {
   const filmList = allFilms.map((movie) => {
     return <tr key={movie.id}>
       <td>{movie.title}</td>
-      <td>{movie.release}</td>
+      <td colSpan={3}>{movie.release}</td>
       <td>{movie.rating}</td>
       <td>{movie.director}</td>
       <td>{movie.genre}</td>
@@ -24,7 +24,7 @@ const AllFilms = (props) => {
       <>
         <Container>
           <Row>
-            <Col>
+            <Col className='mt-3'>
               <h1>All Films</h1>
             </Col>
           </Row>
@@ -35,11 +35,11 @@ const AllFilms = (props) => {
           </Row>
           <Row >
             <Col style={{height: '1000px', overflow: 'scroll'}}>
-            <Table striped border hover thead-dark className="text-center shadow ">
+            <Table striped border hover thead-dark className="text-center shadow" size='lg'>
                 <thead>
                   <tr>
                       <th>Film</th>
-                      <th>Release Year</th>
+                      <th colSpan={3}>Release Year</th>
                       <th>Rating</th>
                       <th>Director</th>
                       <th>Genre</th>

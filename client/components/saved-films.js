@@ -29,7 +29,7 @@ const SavedFilms = (props) => {
           </Row>
           <Row>
             <Col>
-              <Table striped border hover className='text-center shadow'>
+              <Table striped hover className='text-center shadow'>
                 <thead>
                     <tr>
                         <th>Film</th>
