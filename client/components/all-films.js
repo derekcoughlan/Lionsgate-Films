@@ -35,7 +35,7 @@ const AllFilms = (props) => {
           </Row>
           <Row >
             <Col style={{height: '1000px', overflow: 'scroll'}}>
-            <Table striped border hover thead-dark className="text-center shadow" size='lg'>
+            <Table striped border='true' hover thead-dark='true' className="text-center shadow" size='lg'>
                 <thead>
                   <tr>
                       <th>Film</th>

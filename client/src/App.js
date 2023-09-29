@@ -1,15 +1,12 @@
 import React from "react";
-import NavBar from "../containers/navbar.js";
-import Featured from '../containers/featured.js';
-import Tables from "../containers/tables.js";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from "../containers/home";
+
 
 const App = () => {
     return (
-        <div 
-          >
-         <NavBar />
-         <Featured />
-         <Tables />
+        <div>
+            <Home />
         </div>
     )
 }

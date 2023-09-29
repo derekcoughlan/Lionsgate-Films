@@ -29,7 +29,12 @@ module.exports = {
             options: {
               limit: 10000
             }
-        }
+        },
+        {
+            test: /\.m?js$/,
+            enforce: 'pre',
+            use: ['source-map-loader'],
+          }
         ]
     },
     plugins: [
@@ -41,14 +46,15 @@ module.exports = {
     devServer: {
         static: {
             publicPath: '/build',
-            directory: path.resolve(__dirname, 'build')
+            directory: path.resolve(__dirname, 'build'),
        },
        proxy: {
         '/home/**': {
             target: 'http://localhost:3000/',
             secure: false,
         } //this may need to change based on how my code is set up.
-       }
+       },
+       historyApiFallback: true
     },
     resolve: {   
         extensions: ['.js', '.jsx'], 

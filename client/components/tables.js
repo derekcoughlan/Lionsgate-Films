@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import AllFilms from '../components/all-films';
-import SavedFilms from '../components/saved-films';
+import AllFilms from './all-films';
+import SavedFilms from './saved-films';
 
 const Tables = () => {
 

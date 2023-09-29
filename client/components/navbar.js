@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
@@ -17,8 +18,9 @@ function NavBar (){
               alt="React Bootstrap logo"
             /></Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="">About</Nav.Link>
-            <Nav.Link href="">Contact</Nav.Link>
+          <Nav.Link as={Link} to={{pathname: '/'}}>Home</Nav.Link>
+            <Nav.Link as={Link} to={{pathname: '/about'}}>About</Nav.Link>
+            <Nav.Link as={Link} to={{pathname: '/contactus'}}>Contact</Nav.Link>
           </Nav>
           </Container>
       </Navbar>
