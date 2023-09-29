@@ -1,12 +1,17 @@
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 
-const dataController = require('./controllers/dataController')
+const dataController = require('./controllers/dataController');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+
 
 app.use(express.json());
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'production'){
     console.log('got in production')
@@ -18,10 +23,6 @@ app.get('/', (req, res) => {
     return res.status(200).sendFile(path.join(__dirname, '../index.html'));
     })
 }
-
-app.get('/home/', dataController.getAllFilms, (req, res) => {
-   res.status(200).json(res.locals.allFilms);
-})
 
 app.post('/home/addSaved', dataController.addSavedFilms, (req, res) => {
     res.sendStatus(200)
@@ -35,7 +36,13 @@ app.get('/home/savedFilms', dataController.getSavedFilms, (req, res) => {
    res.status(200).json(res.locals.savedFilms);
 })
 
+app.post('/home/loginuser', userController.verifyUser, cookieController.setCookie, (req, res) => {
+    res.sendStatus(200);
+})
 
+app.get('/home/', dataController.getAllFilms, (req, res) => {
+    res.status(200).json(res.locals.allFilms);
+ })
 
 //Page Not Found
 app.use('*', (req, res) => {

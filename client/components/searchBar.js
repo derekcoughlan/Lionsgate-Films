@@ -3,12 +3,12 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 
-const SearchBar = (props) => {
+const SearchBar = ({ searchTable }) => {
     const [searchValue, setSearchValue] = useState('')
 
     const submitForm = (e) => {
         e.preventDefault();
-        props.searchTable(searchValue);
+        searchTable(searchValue);
     }
 
     return (
