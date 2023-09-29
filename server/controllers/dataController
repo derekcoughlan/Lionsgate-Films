@@ -1,8 +1,8 @@
 const db = require('../model');
 
-const userController = {};
+const dataController = {};
 
-userController.getAllFilms = (req, res, next) => {
+dataController.getAllFilms = (req, res, next) => {
     const text =  'SELECT * FROM films ORDER BY release DESC LIMIT 250;';
     db.query(text, (err, result) => {
         if (err){
@@ -22,7 +22,7 @@ userController.getAllFilms = (req, res, next) => {
   )
 }
 
-userController.getSavedFilms = (req, res, next) => {
+dataController.getSavedFilms = (req, res, next) => {
     const text =  'SELECT films.id, films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = 1;';
     db.query(text, (err, result) => {
         if (err){
@@ -42,7 +42,7 @@ userController.getSavedFilms = (req, res, next) => {
   )
 }
 
-userController.addSavedFilms = (req, res, next) => {
+dataController.addSavedFilms = (req, res, next) => {
     const text = 'INSERT INTO savedFilms (userid, movieid) VALUES ($1, $2);'
     const values = [1, req.body.id];
     db.query(text, values).then(data => {
@@ -59,7 +59,7 @@ userController.addSavedFilms = (req, res, next) => {
     })
 }
 
-userController.removeSavedFilms = (req, res, next) => {
+dataController.removeSavedFilms = (req, res, next) => {
     const text = 'DELETE FROM savedFilms WHERE userid = $1 AND movieid = $2;'
     const values = [1, req.body.id];
     db.query(text, values).then(data => {
@@ -76,4 +76,4 @@ userController.removeSavedFilms = (req, res, next) => {
     })
 }
 
-module.exports = userController;
+module.exports = dataController;

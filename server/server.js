@@ -4,7 +4,7 @@ const path = require('path')
 require('dotenv').config();
 
 
-const userController = require('./controllers/userController')
+const dataController = require('./controllers/dataController')
 
 app.use(express.json());
 
@@ -19,19 +19,19 @@ app.get('/', (req, res) => {
     })
 }
 
-app.get('/home/', userController.getAllFilms, (req, res) => {
+app.get('/home/', dataController.getAllFilms, (req, res) => {
    res.status(200).json(res.locals.allFilms);
 })
 
-app.post('/home/addSaved', userController.addSavedFilms, (req, res) => {
+app.post('/home/addSaved', dataController.addSavedFilms, (req, res) => {
     res.sendStatus(200)
 })
 
-app.delete('/home/removeSaved', userController.removeSavedFilms, (req, res) => {
+app.delete('/home/removeSaved', dataController.removeSavedFilms, (req, res) => {
     res.sendStatus(200)
 })
 
-app.get('/home/savedFilms', userController.getSavedFilms, (req, res) => {
+app.get('/home/savedFilms', dataController.getSavedFilms, (req, res) => {
    res.status(200).json(res.locals.savedFilms);
 })
 
