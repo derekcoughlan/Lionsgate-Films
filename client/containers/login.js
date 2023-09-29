@@ -12,12 +12,7 @@ function LogIn() {
     const handleChange = (event) => {
         console.log('inside handle change: ', event.target.name)
         const { name, value } = event.target;
-        if (name === 'user'){
-            setUser(value);
-        }
-        else{
-            setPass(value);
-        }
+        name === 'user' ? setUser(value) : setPass(value);
     }
 
     const handleSubmit = (event) => {

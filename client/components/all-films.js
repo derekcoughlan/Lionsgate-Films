@@ -6,17 +6,16 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const AllFilms = (props) => {
-  const allFilms = props.films
+const AllFilms = ({ films, addSavedFilm, searchTable }) => {
 
-  const filmList = allFilms.map((movie) => {
+  const filmList = films.map((movie) => {
     return <tr key={movie.id}>
       <td>{movie.title}</td>
       <td colSpan={3}>{movie.release}</td>
       <td>{movie.rating}</td>
       <td>{movie.director}</td>
       <td>{movie.genre}</td>
-      <td><Button variant="outline-secondary" onClick={() => {props.handleClick(movie.id)}}>Save</Button></td>
+      <td><Button variant="outline-secondary" onClick={() => {addSavedFilm(movie.id)}}>Save</Button></td>
     </tr>
   })
 
@@ -30,7 +29,7 @@ const AllFilms = (props) => {
           </Row>
           <Row>
             <Col className='my-3'>
-              <SearchBar searchTable={props.searchTable}/>
+              <SearchBar searchTable={searchTable}/>
             </Col>
           </Row>
           <Row >

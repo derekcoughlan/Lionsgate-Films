@@ -5,18 +5,18 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
-const SavedFilms = (props) => {
-    const savedFilms = props.savedFilms;
+const SavedFilms = ({ savedFilms, removeSavedFilm }) => {
+    //const savedFilms = props.savedFilms;
     //console.log('savedFilms list: ', savedFilms)
 
     const savedFilmsList = savedFilms.map((movie, index) => {
-        return <tr key={index}>
+        return <tr key={movie.id}>
           <td>{movie.title}</td>
           <td>{movie.release}</td>
           <td>{movie.rating}</td>
           <td>{movie.director}</td>
           <td>{movie.genre}</td>
-          <td><Button variant='outline-secondary' onClick={() => {props.handleClick(movie.id)}}>Remove</Button></td>
+          <td><Button variant='outline-secondary' onClick={() => {removeSavedFilm(movie.id)}}>Remove</Button></td>
         </tr>
     })
 

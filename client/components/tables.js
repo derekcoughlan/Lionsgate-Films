@@ -30,7 +30,7 @@ const Tables = () => {
     getAllSavedFilms();
   }, [])
     
-    function handleClick1(filmId){
+    function addSavedFilm(filmId){
         fetch('/home/addSaved', {
           method: 'POST',
           body: JSON.stringify({id: filmId}),
@@ -41,7 +41,7 @@ const Tables = () => {
           .catch(err => console.log('failed to add saved film'))
       }
 
-      function handleClick2(filmId){
+      function removeSavedFilm(filmId){
         fetch('/home/removeSaved', {
           method: 'DELETE',
           body: JSON.stringify({id: filmId}),
@@ -69,8 +69,8 @@ const Tables = () => {
 
     return (
         <div>
-            <AllFilms films={films} handleClick={handleClick1} searchTable={searchTable} />
-            <SavedFilms savedFilms={savedFilms} handleClick={handleClick2} />
+            <AllFilms films={films} addSavedFilm={addSavedFilm} searchTable={searchTable} />
+            <SavedFilms savedFilms={savedFilms} removeSavedFilm={removeSavedFilm} />
         </div>
     )
 }
