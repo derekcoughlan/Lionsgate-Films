@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import AllFilms from './all-films';
 import SavedFilms from './saved-films';
 
 const Tables = () => {
+  const navigate = useNavigate();
 
   const [films, getFilms] = useState([]);
   const [savedFilms, getSavedFilms] = useState([]);
@@ -11,6 +13,10 @@ const Tables = () => {
     fetch('/home')
       .then(res => res.json())
       .then(data => {
+        console.log('data recieved: ', data)
+        if (data.err){
+          
+        }
         getFilms(data)
       })
       .catch(err => {console.log('failed to retrieve all films')})

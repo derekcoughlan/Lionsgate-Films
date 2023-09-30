@@ -7,11 +7,10 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 
 const AllFilms = ({ films, addSavedFilm, searchTable }) => {
-
   const filmList = films.map((movie) => {
     return <tr key={movie.id}>
       <td>{movie.title}</td>
-      <td colSpan={3}>{movie.release}</td>
+      <td>{movie.release}</td>
       <td>{movie.rating}</td>
       <td>{movie.director}</td>
       <td>{movie.genre}</td>
@@ -38,7 +37,7 @@ const AllFilms = ({ films, addSavedFilm, searchTable }) => {
                 <thead>
                   <tr>
                       <th>Film</th>
-                      <th colSpan={3}>Release Year</th>
+                      <th>Release Year</th>
                       <th>Rating</th>
                       <th>Director</th>
                       <th>Genre</th>

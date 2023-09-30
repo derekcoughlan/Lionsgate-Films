@@ -8,7 +8,9 @@ userController.verifyUser = (req, res, next) => {
     const values = [username, password];
 
     db.query(text, values).then(data => {
+        console.log('user verification succeeded')
         res.locals.userid = data.rows[0].user_id;
+        console.log('res.locals.userid: ', res.locals.userid)
         return next();
     }).catch(err => {
         console.log('user verification failed')
