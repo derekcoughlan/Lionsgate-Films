@@ -7,7 +7,7 @@ import logo from '/assets/lionsgate.png'
 
 function NavBar (){
     return(
-        <>
+        <div>
         <Navbar  bg="dark" data-bs-theme="dark" className="bg-body-primary">
         <Container>
           <Navbar.Brand><img
@@ -24,7 +24,7 @@ function NavBar (){
           </Nav>
           </Container>
       </Navbar>
-      </>
+      </div>
     );
 }
 

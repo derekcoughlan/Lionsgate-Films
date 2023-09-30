@@ -37,11 +37,11 @@ app.get('/home/savedFilms', dataController.getSavedFilms, (req, res) => {
 })
 
 //add this back in with shorter token expiration to see how to deal with error code response and navigate back to login page. right now its set to one hour so the call to allfilms will always work.
-app.post('/home/loginuser',  cookieController.setCookie, (req, res) => {
+app.post('/home/loginuser', userController.verifyUser, cookieController.setCookie, (req, res) => {
     res.sendStatus(200);
 })
 
-app.get('/home/',  dataController.getAllFilms, (req, res) => {
+app.get('/home/', cookieController.isLoggedIn, dataController.getAllFilms, (req, res) => {
     res.status(200).json(res.locals.allFilms);
  })
 

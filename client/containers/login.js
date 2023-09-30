@@ -5,6 +5,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import background from '/assets/blue-lg-background.jpg';
+import loginLogo from '/assets/lg-login-logo.png';
 
 function LogIn() {
     const navigate = useNavigate();
@@ -42,21 +44,33 @@ function LogIn() {
     }
 
     return (
-    <Container>
+    <div style={{
+        // backgroundImage: `url(${background})`,
+        // height: '100vh',
+        // backgroundSize: 'cover',
+        // backgroundRepeat: 'no-repeat',
+        // color: 'white'
+        }}>
+    <Container id="main-container" className='d-grid h-100'>
         <Row>
-            <Col className= 'mt-5'>
-                <h1>Log in</h1>
-            </Col>
+            <img 
+                src={loginLogo}
+            />
         </Row>
         <Row>
+            <Col className= 'mt-5'>
+                <h1>Please sign in</h1>
+            </Col>
+        </Row>
+        <Row >
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control type="username" placeholder="Enter username" value={user}  name='user' onChange={handleChange}/>
+                    <Form.Control style={{width: '450px'}} type="username" placeholder="Enter username" value={user}  name='user' onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group className="mb-3" id="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Enter password" value={pass} name='pass' onChange={handleChange}/>
+                    <Form.Control style={{width: '450px'}} type="password" placeholder="Enter password" value={pass} name='pass' onChange={handleChange}/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                      Submit
@@ -64,6 +78,7 @@ function LogIn() {
             </Form>
       </Row>
     </Container>
+    </div>
     );
   }
   

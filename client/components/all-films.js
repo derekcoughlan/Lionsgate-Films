@@ -19,7 +19,7 @@ const AllFilms = ({ films, addSavedFilm, searchTable }) => {
   })
 
     return (
-      <>
+      <div>
         <Container>
           <Row>
             <Col className='mt-3'>
@@ -52,7 +52,7 @@ const AllFilms = ({ films, addSavedFilm, searchTable }) => {
           </Row>
             
         </Container>
-      </>
+      </div>
     )
 }
 

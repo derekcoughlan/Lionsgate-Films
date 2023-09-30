@@ -13,11 +13,14 @@ const Tables = () => {
     fetch('/home')
       .then(res => res.json())
       .then(data => {
-        console.log('data recieved: ', data)
+        //console.log('data recieved: ', data)
         if (data.err){
-          
+          navigate('/login')
         }
-        getFilms(data)
+        else{
+          getFilms(data)
+        }
+        
       })
       .catch(err => {console.log('failed to retrieve all films')})
   }

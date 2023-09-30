@@ -23,9 +23,12 @@ dataController.getAllFilms = (req, res, next) => {
 }
 
 dataController.getSavedFilms = (req, res, next) => {
-    const text =  'SELECT films.id, films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = 1;';
-    db.query(text, (err, result) => {
-        if (err){
+    const text =  'SELECT films.id, films.title, films.release, films.rating, films.director, films.genre FROM films LEFT JOIN savedFilms ON films.id = savedFilms.movieid WHERE savedFilms.userid = ($1);';
+    const values = [req.cookies.id]
+    db.query(text, values).then((result) => {
+        res.locals.savedFilms = result.rows;
+            return next()
+        }).catch((err) => {
             return next({
                 log: 'userController.getSavedFilms ERROR: failure to retrieve saved films',
                 status: 404,
@@ -33,18 +36,12 @@ dataController.getSavedFilms = (req, res, next) => {
                     err: 'userController.getSavedFilms ERROR: failure to retrieve saved films'
                 }
             })
-        }
-        else{
-            res.locals.savedFilms = result.rows;
-            return next()
-        }
-    }
-  )
-}
+        })
+};
 
 dataController.addSavedFilms = (req, res, next) => {
     const text = 'INSERT INTO savedFilms (userid, movieid) VALUES ($1, $2);'
-    const values = [1, req.body.id];
+    const values = [req.cookies.id, req.body.id];
     db.query(text, values).then(data => {
         console.log('film has been added')
         return next();
@@ -61,7 +58,7 @@ dataController.addSavedFilms = (req, res, next) => {
 
 dataController.removeSavedFilms = (req, res, next) => {
     const text = 'DELETE FROM savedFilms WHERE userid = $1 AND movieid = $2;'
-    const values = [1, req.body.id];
+    const values = [req.cookies.id, req.body.id];
     db.query(text, values).then(data => {
         console.log('film has been removed')
         return next();

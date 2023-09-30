@@ -11,6 +11,7 @@ cookieController.setCookie = (req, res, next) => {
     })
     console.log('token: ', token)
     res.cookie('ssid', token, {httpOnly: true});
+    res.cookie('id', res.locals.userid)
     return next();
 }
 

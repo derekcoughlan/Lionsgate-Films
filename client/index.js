@@ -5,6 +5,7 @@ import About from './containers/about';
 import ContactUs from "./containers/contact-us";
 import Login from "./containers/login";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css';
 import App from "./src/App";
 
 const router = createBrowserRouter([

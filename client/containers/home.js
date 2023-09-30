@@ -5,8 +5,7 @@ import Tables from "../components/tables.js";
 
 const Home = () => {
     return (
-        <div 
-          >
+        <div>
          <NavBar />
          <Featured />
          <Tables />
