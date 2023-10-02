@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import background from '/assets/blue-lg-background.jpg';
 import loginLogo from '/assets/lg-login-logo.png';
 
 function LogIn() {
@@ -44,13 +43,7 @@ function LogIn() {
     }
 
     return (
-    <div style={{
-        // backgroundImage: `url(${background})`,
-        // height: '100vh',
-        // backgroundSize: 'cover',
-        // backgroundRepeat: 'no-repeat',
-        // color: 'white'
-        }}>
+    <div>
     <Container id="main-container" className='d-grid h-100'>
         <Row>
             <img 

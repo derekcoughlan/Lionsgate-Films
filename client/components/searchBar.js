@@ -17,7 +17,7 @@ const SearchBar = ({ searchTable }) => {
             <InputGroup>
               <Form.Control
                 type='text'
-                placeholder='Search...'
+                placeholder='Search Film...'
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
               /> 
